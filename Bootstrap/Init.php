@@ -1,8 +1,11 @@
 <?php
 
-define('BASEURL', __DIR__ . "/../");
+define('BASEURL',__DIR__ . "/../");
 
 include BASEURL . "vendor/autoload.php";
 
+
 $dotenv = Dotenv\Dotenv::createImmutable(BASEURL);
 $dotenv->load();
+
+include BASEURL . "Helpers/helper.php";
