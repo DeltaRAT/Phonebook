@@ -1,8 +1,7 @@
 <?php
 # It is FrontController!
 
-include_once "vendor/autoload.php";
+include "Bootstrap/Init.php";
 
-// echo $_SERVER['REQUEST_URI'];
-
-new \App\Core\Request();
+echo $_ENV['DB_NAME'];
+var_dump($_ENV);
