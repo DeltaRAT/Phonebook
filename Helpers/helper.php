@@ -8,7 +8,11 @@ function asset_url($route){
     return site_url('Assets/' . $route);
 }
 
-function random_element($arr){
-    shuffle($arr);
-    return array_pop($arr);
+function view($path, $data = []){
+    extract($data);
+    $path = str_replace('.','/',$path);
+    $view_full_path = BASEURL .  "Views/$path.php";
+    include_once $view_full_path;
 }
+
+
