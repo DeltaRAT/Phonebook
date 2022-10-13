@@ -20,7 +20,7 @@ class Router{
     public function findRoute(Request $request){
         foreach ($this->routes as $route){
             if (!in_array($request->method(),$route['methods'])){
-                return false;
+                continue;
             }
             if ($this->regex_matched($route)){
                 return $route;
@@ -63,6 +63,7 @@ class Router{
         #   $this->dispatch();
         # }
         #404 : uri not found
+
         if (is_null($this->current_route))
             $this->dispatch404();
         $this->dispatch($this->current_route);

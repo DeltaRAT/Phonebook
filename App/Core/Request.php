@@ -11,6 +11,9 @@ class Request{
 
     public function __construct()
     {
+        foreach ($_REQUEST as $key => $value){
+            $_REQUEST[$key] = xss_clean($value);
+        }
         $this->params = $_REQUEST;
         $this->agent = $_SERVER['HTTP_USER_AGENT'];
         $this->method = strtolower($_SERVER['REQUEST_METHOD']);
@@ -39,7 +42,7 @@ class Request{
         return $this->params;
     }
     public function input($key){
-        return $this->params[$key];
+            return $this->params[$key] ?? null;
     }
     public function isset($key){
         return isset($this->params[$key]);

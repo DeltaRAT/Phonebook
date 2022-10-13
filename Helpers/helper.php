@@ -1,11 +1,11 @@
 <?php
 
-function site_url($route){
+function site_url($route = ''){
     return $_ENV['HOST'] . $route;
 }
 
-function asset_url($route){
-    return site_url('Assets/' . $route);
+function asset_url($route = ''){
+    return site_url('/Assets/' . $route);
 }
 
 function view($path, $data = []){
@@ -13,6 +13,10 @@ function view($path, $data = []){
     $path = str_replace('.','/',$path);
     $view_full_path = BASEURL .  "Views/$path.php";
     include_once $view_full_path;
+}
+function viewAndDie($path, $data = []){
+    view($path,$data);
+    die();
 }
 function strContains($str,$needle,$case_sensitive = 0)
 {
@@ -34,6 +38,9 @@ function nice_dd($var)
 {
     nice_dump($var);
     die();
+}
+function xss_clean($str){
+    return filter_var(htmlspecialchars($str), FILTER_SANITIZE_STRING);
 }
 
 
